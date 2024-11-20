@@ -1,0 +1,10 @@
+.nav-header a {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-black);
+}
+@media (max-width:1280px) {
+  .nav-header{
+    flex-direction: column;
+  }
+}

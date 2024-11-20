@@ -1,0 +1,18 @@
+.headerBtns a {
+  width: 162px;
+  height: 60px;
+  background: rgba(59, 173, 226, 1);
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+}
+/* rgba(59, 173, 226, 0.1) */
+.headerBtns a:last-child{
+  background-color:rgba(59, 173, 226, 0.1);
+  color: rgba(59, 173, 226, 1);
+}
+@media (max-width:1024px) {
+  .headerBtns a{
+    width: 150px;
+  }
+}

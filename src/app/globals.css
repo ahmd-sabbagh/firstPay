@@ -3,31 +3,49 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --text-black: #282828;
+  --text-grey: rgba(0, 0, 0, 0.6);
+  --site-color: #3bade2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.container {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.flex-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fix-height {
+  min-height: calc(100vh - 100px);
+}
+
+/* --------------frame---------- */
+.text-mob {
+  text-align: center;
+}
+.text-grey {
+  color: var(--text-grey) !important;
+}
+.text-black {
+  color: var(--text-black) !important;
+}
+.text-main {
+  color: var(--site-color);
+}
+.bg-main {
+  background-color: var(--site-color);
+}
+.fit-content {
+  width: fit-content;
+}
+@media (min-width: 1024px) {
+  .text-mob {
+    text-align: unset;
   }
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+button:disabled {
+  cursor: not-allowed;
 }

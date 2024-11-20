@@ -1,0 +1,25 @@
+.heroSection {
+  background: linear-gradient(
+    48deg,
+    rgba(59, 173, 226, 0.3085609243697479) 0%,
+    rgba(9, 9, 121, 0) 63%
+  );
+}
+.heroText > span {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 300;
+  font-size: 25px;
+}
+.heroText h1 span {
+  color: var(--site-color);
+}
+.heroText p {
+  color: var(--text-grey);
+}
+
+@media (max-width: 767px) {
+  .heroText h1 {
+    font-size: 32px;
+    margin-top: 30px;
+  }
+}

@@ -1,0 +1,12 @@
+.Button{
+    flex-basis: 181px;
+    height: 60px;
+    border-radius: 50px;
+    background-color: var(--site-color);
+    color: white;
+}
+.Button.border{
+    border:2px solid var(--site-color);
+    background-color: transparent;
+    color: var(--site-color);
+}
