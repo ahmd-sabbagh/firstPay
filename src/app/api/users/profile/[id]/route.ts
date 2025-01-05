@@ -3,6 +3,7 @@ import prisma from "@/utils/db";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/utils/verifyToken";
 import { updateUserDto } from "@/utils/dtos";
+import { SetCookie } from "@/utils/jwt";
 
 interface Props {
   params: { id: string };
@@ -28,7 +29,10 @@ export async function DELETE(request: NextRequest, { params }: Props) {
 
     const userFromToken = verifyToken(request);
 
-    if (userFromToken !== null && userFromToken.id === user.id) {
+    if (
+      userFromToken !== null &&
+      (userFromToken.id === user.id || userFromToken.isAdmin === true)
+    ) {
       await prisma.user.delete({ where: { id: parseInt(params.id) } });
       const commentsIds: number[] = user?.comment.map((comment) => comment.id);
       await prisma.comment.deleteMany({
@@ -115,7 +119,13 @@ export async function PUT(request: NextRequest, { params }: Props) {
     }
 
     const userFromToken = verifyToken(request);
-    if (userFromToken === null || userFromToken.id !== user.id) {
+    if (userFromToken === null) {
+      return NextResponse.json(
+        { message: "You Are Not Allowed, Access Denied" },
+        { status: 403 }
+      );
+    }
+    if (userFromToken.id !== user.id) {
       return NextResponse.json(
         { message: "You Are Not Allowed, Access Denied" },
         { status: 403 }
@@ -137,8 +147,19 @@ export async function PUT(request: NextRequest, { params }: Props) {
         isAdmin: body.isAdmin,
       },
     });
+    const cookie = SetCookie({
+      id: updateUser.id,
+      isAdmin: updateUser.isAdmin,
+      username: updateUser.username,
+    });
     const { password, ...other } = updateUser;
-    return NextResponse.json({ ...other }, { status: 200 });
+    return NextResponse.json(
+      { message: "success", ...other },
+      {
+        status: 200,
+        headers: { "Set-Cookie": cookie },
+      }
+    );
   } catch (error) {
     return NextResponse.json(
       { message: "internal server error" },

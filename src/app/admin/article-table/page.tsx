@@ -47,7 +47,8 @@ const ArticleTablePage = async ({
               </td>
               <td>
                 <Link
-                  className=" text-blue-500"
+                  rel="preload"
+                  className="text-blue-500"
                   href={`/article/${article.id}`}
                 >
                   {"قراءة المزيد"}

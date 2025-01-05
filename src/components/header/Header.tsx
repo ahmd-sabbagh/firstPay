@@ -20,7 +20,7 @@ function Header() {
           <Image src={Logo} alt="logo" priority />
         </div>
         <Navbar userData={userPayLoad} />
-        {userPayLoad && <Logout />}
+        {userPayLoad && <Logout userInfo={userPayLoad} />}
       </div>
     </header>
   );

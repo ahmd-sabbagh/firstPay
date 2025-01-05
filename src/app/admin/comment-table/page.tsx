@@ -4,16 +4,11 @@ import { cookies } from "next/headers";
 
 import Link from "next/link";
 import DeletComment from "./DeleteComment";
+import { GetCommentsTable } from "@/apiCalls/getCommentsTable";
 
 const AddCommentPage = async () => {
-  const token = cookies().get("jwtCookie")?.value;
-  const response = await fetch(`${DOMAIN}/api/comments`, {
-    headers: {
-      Cookie: `jwtCookie=${token}`,
-    },
-  });
-  if (!response.ok) throw new Error("faild featch data");
-  const comments: Comment[] = await response.json();
+  const token = cookies().get("jwtCookie")?.value || "";
+  const comments:Comment[] = await GetCommentsTable(token)
   return (
     <section className="p-5">
       <h1 className="text-main text-3xl mt-4">{"جميع التعليقات"}</h1>

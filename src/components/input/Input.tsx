@@ -2,15 +2,18 @@ import "./styles.css";
 
 interface InputData {
   type?: string;
+  defaultValue?:string
   value?: string;
   lable?: string;
   placeHolder?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  
 }
 
 function Input({
   lable,
   type = "text",
+  defaultValue,
   value,
   placeHolder,
   onChange,
@@ -24,6 +27,7 @@ function Input({
         className="mt-5"
         id={lable}
         type={type}
+        defaultValue={defaultValue}
         value={value}
         placeholder={placeHolder}
         onChange={onChange}

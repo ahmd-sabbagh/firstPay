@@ -54,7 +54,13 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     const user = verifyToken(request);
-    if (user === null || user.isAdmin !== false) {
+    if (user === null) {
+      return NextResponse.json(
+        { message: "only admin, access denied" },
+        { status: 403 }
+      );
+    }
+    if (!user.isAdmin) {
       return NextResponse.json(
         { message: "only admin, access denied" },
         { status: 403 }

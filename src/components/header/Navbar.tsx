@@ -5,9 +5,9 @@ import Buttons from "./buttons/Buttons";
 import { Menu } from "@/assets";
 import styles from "./styles.module.css";
 
-const Navbar = ({userData}: any) => {
+const Navbar = ( {userData} :any) => {
   const [open, setOpen] = useState(false);
-  
+
   return (
     <>
       <div
@@ -16,7 +16,7 @@ const Navbar = ({userData}: any) => {
           clipPath: (open && "polygon(0 0, 100% 0, 100% 100%, 0 100%)") || "",
         }}
       >
-        <Nav />
+        <Nav dataUser={userData} />
         {!userData ? <Buttons /> : ""}
       </div>
       <div

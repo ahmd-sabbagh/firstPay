@@ -1,12 +1,15 @@
-import React from 'react'
-import AddNewArticle from './AddNewArticle'
+import React from "react";
+import AddNewArticle from "./AddNewArticle";
+
 
 const page = () => {
+
+
   return (
     <>
-        <AddNewArticle />
+      <AddNewArticle />
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;
