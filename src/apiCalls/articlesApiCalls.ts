@@ -1,5 +1,6 @@
 import { DOMAIN } from "@/utils/constants";
 import { Article } from "@prisma/client";
+import { toast } from "react-toastify";
 
 // Get articles based on pageNumber
 export async function getArticles(
@@ -11,7 +12,7 @@ export async function getArticles(
   );
 
   if (!response.ok) {
-    throw new Error("Failed to fetch articles");
+    toast.error("error load")
   }
 
   return response.json();
@@ -24,7 +25,7 @@ export async function getArticlesCount(): Promise<number> {
     cache: "no-store",
   });
   if (!response.ok) {
-    throw new Error("error to fetch articles");
+    toast.error("error load")
   }
   return (await response.json()) as number;
 }
@@ -39,7 +40,7 @@ export async function getArticlesBySearchText(
     { cache: "no-store" }
   );
   if (!response.ok) {
-    throw new Error("error to fetch articles");
+    toast.error("error load")
   }
   return (await response.json()) as Article[];
 }
@@ -52,7 +53,7 @@ export async function GetArticleSingle(articleId: string) {
       { cache: "no-store" }
     );
     if (!response.ok) {
-      throw new Error("error to fetch articles");
+      toast.error("error load")
     }
     return response.json();
   } catch (error) {

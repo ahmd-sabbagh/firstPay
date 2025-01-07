@@ -26,6 +26,8 @@ const AddNewArticle = () => {
       setLoading(false);
       if(data.status === 201){
         toast.success("article add succes")
+        setTitle("")
+        setDescription("")
       }
     } catch (error: any) {
       toast.error(error?.response?.data.message);

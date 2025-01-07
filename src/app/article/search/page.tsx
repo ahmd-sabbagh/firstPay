@@ -13,9 +13,11 @@ const SearchArticlePage = async ({
   return (
     <section className="fix-height">
       <div className="container">
-        <h1 className="text-center mt-16">{textSearch}</h1>
+        <h1 className="text-center mt-16">
+          {!articles.length ? "لا يوجد نتائج بحث" : textSearch}
+        </h1>
         <div className="flex items-center justify-center flex-wrap gap-7 py-7">
-        {articles?.map((article: Article) => (
+          {articles?.map((article: Article) => (
             <ArticleItem article={article} key={article.id} />
           ))}
         </div>

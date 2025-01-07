@@ -5,6 +5,7 @@ import Link from "next/link";
 import Pagination from "@/app/article/Pagination";
 import DeletArticle from "./DeletArticle";
 import EditArticleModal from "./EditArticleModal";
+import prisma from "@/utils/db";
 
 interface ArticleTableParams {
   searchParams: { pageNumber: string };
@@ -14,7 +15,7 @@ const ArticleTablePage = async ({
   searchParams: { pageNumber },
 }: ArticleTableParams) => {
   const articles: Article[] = await getArticles(pageNumber);
-  const articlesCount: number = await getArticlesCount();
+  const articlesCount: number = await prisma.article.count();
   const pages = Math.ceil(articlesCount / ARTICLE_PER_PAGE);
 
   return (

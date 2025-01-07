@@ -23,6 +23,7 @@ const AdminEdit = ({ user }: Props) => {
     if (state === user.isAdmin) {
       return toast.warning("change any data");
     }
+    setLoading(true);
     try {
       const data = await axios.put(`${DOMAIN}/api/users/profile/${user.id}`, {
         isAdmin: state,

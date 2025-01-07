@@ -12,7 +12,6 @@ export async function GET(request: NextRequest) {
   try {
     const textSearch = request.nextUrl.searchParams.get("textSearch");
     let articles;
-    
     if (textSearch) {
       articles = await prisma.article.findMany({
         where: {

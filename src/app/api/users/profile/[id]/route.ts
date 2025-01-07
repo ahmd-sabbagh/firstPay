@@ -126,11 +126,22 @@ export async function PUT(request: NextRequest, { params }: Props) {
       );
     }
     if (userFromToken.id !== user.id) {
+      if (userFromToken.isAdmin) {
+        const body = (await request.json()) as updateUserDto;
+        await prisma.user.update({
+          where: { id: parseInt(params.id) },
+          data: {
+            isAdmin: body.isAdmin,
+          },
+        });
+        return NextResponse.json({ message: "updated admin" }, { status: 200 });
+      }
       return NextResponse.json(
         { message: "You Are Not Allowed, Access Denied" },
         { status: 403 }
       );
     }
+
     const body = (await request.json()) as updateUserDto;
 
     if (body.password) {
